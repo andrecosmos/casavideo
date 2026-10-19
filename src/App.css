@@ -1,0 +1,496 @@
+/* Configurações Globais */
+body {
+  background-color: #fafafa; /* Fundo escuro estilo Netflix */
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  padding: 20px 4%;
+}
+
+/* Cabeçalho e Busca */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  color: #e50914; /* Vermelho clássico */
+  margin: 0;
+}
+
+.search-input {
+  background-color: #333;
+  border: 1px solid #555;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  width: 300px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #e50914;
+}
+
+/* 🟥 Mágica do CSS Grid */
+.catalog-grid {
+  display: grid;
+  /* Cria colunas automáticas de no mínimo 200px, distribuindo o espaço igualmente */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+/* Cartão do Filme */
+.movie-card {
+  background-color: #181818;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+/* Efeito de zoom ao passar o mouse */
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.movie-info {
+  padding: 12px;
+}
+
+.movie-info h3 {
+  margin: 0 0 8px 0;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Corta o texto longo com "..." */
+}
+
+.movie-info p {
+  margin: 0;
+  color: #46d369; /* Verde para destacar a nota */
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.no-image {
+  height: 300px;
+  background-color: #2c2c2c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+}
+
+/* Container principal do Header */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background-color: #141414; /* Fundo escuro estilo streaming */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Alinhamento da linha de cima: Título e Busca */
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px; /* Limita a largura em telas grandes */
+  gap: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #ff4757; /* Cor de destaque */
+  white-space: nowrap;
+}
+
+/* Estilização da Barra de Pesquisa */
+.search-input {
+  flex: 1;
+  max-width: 400px; /* Impede que a barra fique excessivamente larga */
+  padding: 10px 16px;
+  font-size: 1rem;
+  border: 1px solid #333;
+  border-radius: 24px; /* Barra arredondada moderna */
+  background-color: #1f1f1f;
+  color: #fff;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Efeito de foco na Barra de Pesquisa */
+.search-input:focus {
+  border-color: #ff4757;
+  background-color: #2a2a2a;
+  box-shadow: 0 0 8px rgba(255, 71, 87, 0.2);
+}
+
+/* Limitação de largura para as categorias também ficarem alinhadas */
+.genres-filter-bar {
+  max-width: 1200px;
+}
+
+/* Responsividade para Celulares */
+@media (max-width: 600px) {
+  .header-top {
+    flex-direction: column; /* Coloca a busca embaixo do logo no celular */
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .search-input {
+    max-width: 100%; /* Ocupa toda a largura no celular */
+  }
+  
+  .header h1 {
+    text-align: center;
+  }
+}
+
+
+
+/* Container da barra de filtros */
+.genres-filter-bar {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 15px 5px;
+  width: 100%;
+  margin-top: 15px;
+  
+  /* Esconde a barra de rolagem padrão no IE, Edge e Firefox */
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}
+
+/* Esconde a barra de rolagem padrão no Chrome, Safari e Opera */
+.genres-filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Estilo padrão dos botões de categoria */
+.genres-filter-bar button {
+  background-color: #2a2a2a; /* Tom escuro de fundo */
+  color: #ffffff;
+  border: 1px solid #444444;
+  padding: 8px 18px;
+  border-radius: 20px; /* Bordas arredondadas (pílula) */
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap; /* Impede que o texto quebre linha */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Efeito ao passar o mouse (Hover) */
+.genres-filter-bar button:hover {
+  background-color: #444444;
+  border-color: #ff4757; /* Cor de destaque (ex: vermelho/coral) */
+  transform: translateY(-2px); /* Leve efeito de flutuação */
+}
+
+/* Estado do botão ativo (Gênero selecionado) */
+.genres-filter-bar button.active-genre {
+  background-color: #ff4757; /* Sua cor principal de destaque */
+  border-color: #ff4757;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3); /* Brilho suave */
+  font-weight: 600;
+}
+
+
+
+/* Container geral da seção de elenco */
+.cast-section {
+  margin-top: 40px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.cast-section h2 {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+/* Container do carrossel (permite scroll horizontal) */
+.cast-carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+  
+  /* Esconde a barra de rolagem padrão */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.cast-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Card individual do ator */
+.cast-card {
+  background-color: #1f1f1f;
+  min-width: 140px; /* Garante que o card não esmague no carrossel */
+  max-width: 140px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.cast-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Imagem do ator */
+.cast-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover; /* Corta a imagem perfeitamente sem distorcer */
+  display: block;
+}
+
+/* Textos dentro do card */
+.cast-info {
+  padding: 10px;
+  text-align: center;
+}
+
+.cast-info h3 {
+  color: #fff;
+  font-size: 0.9rem;
+  margin: 0 0 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Corta nomes gigantes com '...' */
+}
+
+.cast-info p {
+  color: #aaa;
+  font-size: 0.75rem;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+/* Container de Fundo de toda a página de Detalhes */
+.movie-detail-container {
+  min-height: 100vh;
+  background-color: #141414; /* Fundo escuro estilo Netflix */
+  color: #ffffff;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Área principal: Capa + Textos lado a lado */
+.movie-detail-main {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+/* Imagem da Capa do Filme (Poster) */
+.movie-detail-poster {
+  width: 300px;
+  min-width: 300px;
+  height: 450px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  object-fit: cover;
+}
+
+/* Caixa que segura os textos (Título, Sinopse...) */
+.movie-detail-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinha o texto no topo */
+  gap: 16px;
+  flex: 1;
+}
+
+/* Título do Filme */
+.movie-detail-info h1 {
+  font-size: 2.8rem;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Bloco da nota e ano de lançamento */
+.movie-meta {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  font-size: 1.1rem;
+  color: #cccccc;
+}
+
+/* Selo com a nota em estrelas */
+.movie-rating {
+  background-color: #ff4757; /* Cor avermelhada de destaque */
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+/* Título escrito "Sinopse" */
+.movie-overview-title {
+  font-size: 1.4rem;
+  margin: 20px 0 5px 0;
+  color: #ff4757;
+  font-weight: 600;
+}
+
+/* Texto descritivo da sinopse */
+.movie-overview {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  margin: 0;
+  text-align: justify;
+}
+
+/* ================== RESPONSIVIDADE PARA CELULAR ================== */
+@media (max-width: 768px) {
+  .movie-detail-main {
+    flex-direction: column; /* No celular, a capa fica em cima do texto */
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .movie-detail-poster {
+    width: 220px;
+    min-width: 220px;
+    height: 330px;
+  }
+
+  .movie-detail-info h1 {
+    font-size: 2rem;
+  }
+
+  .movie-meta {
+    justify-content: center;
+  }
+
+  .movie-overview {
+    text-align: center;
+  }
+}
+
+
+/* Estilo do Botão de Voltar */
+.back-button {
+  align-self: flex-start; /* Alinha o botão à esquerda no topo */
+  background-color: #2a2a2a;
+  color: #ffffff;
+  border: 1px solid #444444;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 25px; /* Espaço entre o botão e a capa do filme */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease-in-out;
+  max-width: 1200px;
+}
+
+/* Efeito Hover (passar o mouse) */
+.back-button:hover {
+  background-color: #ff4757; /* Cor de destaque idêntica aos seus filtros */
+  border-color: #ff4757;
+  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
+  transform: translateX(-4px); /* Leve movimento simulando o "voltar" */
+}
+
+/* Ajuste de alinhamento para telas menores */
+@media (max-width: 768px) {
+  .back-button {
+    align-self: center; /* Centraliza no celular para facilitar o clique */
+    margin-bottom: 20px;
+  }
+}
+
+
+/* Container da seção do trailer */
+.trailer-section {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.trailer-section h2 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  border-left: 4px solid #ff4757;
+  padding-left: 10px;
+}
+
+/* Truque de CSS para manter a proporção de vídeo 16:9 perfeita em telas de qualquer tamanho */
+.video-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%; /* Proporção 16:9 */
+  position: relative;
+  height: 0;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  background-color: #000;
+}
+
+.video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+/* Mensagem de aviso quando não há trailer */
+.no-trailer {
+  color: #aaa;
+  font-style: italic;
+  background-color: #1f1f1f;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
